@@ -1,6 +1,8 @@
 package dev.idion.stringcalc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class StringCalculator {
 	public static void main(String[] args) {
@@ -20,17 +22,12 @@ public class StringCalculator {
 		
 		List<Integer> numberList = new ArrayList<>();
 		List<String> operatorList = new ArrayList<>();
-		Map<String, String> operatorMap = new HashMap<>();
-		operatorMap.put("plus", "+");
-		operatorMap.put("minus", "-");
-		operatorMap.put("multiply", "*");
-		operatorMap.put("divide", "/");
 		
 		for (int i = 0; i < expressionArray.length; i++) {
 			if (expressionArray[i].matches("(^[0-9]*$)")) {
 				numberList.add(Integer.parseInt(expressionArray[i]));
 			} else {
-				operatorList.add(operatorMap.get(expressionArray[i]));
+				operatorList.add(expressionArray[i]);
 			}
 		}
 		
