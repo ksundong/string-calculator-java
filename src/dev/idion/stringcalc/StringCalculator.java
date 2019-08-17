@@ -22,6 +22,7 @@ public class StringCalculator {
 		
 		List<Integer> numberList = new ArrayList<>();
 		List<String> operatorList = new ArrayList<>();
+		operatorList.add("");
 		
 		for (int i = 0; i < expressionArray.length; i++) {
 			if (expressionArray[i].matches("(^[0-9]*$)")) {
@@ -31,50 +32,32 @@ public class StringCalculator {
 			}
 		}
 		
-		if (numberList.size() - operatorList.size() == 1) {
-			int result = 0;
-			for (int i = 0; i < operatorList.size(); i++) {
-				String operator = operatorList.get(i);
-				if (result != 0) {
-					int j = i + 1;
-					switch (operator) {
-						case "plus":
-							result += numberList.get(j);
-							break;
-						case "minus":
-							result -= numberList.get(j);
-							break;
-						case "multiply":
-							result *= numberList.get(j);
-							break;
-						case "divide":
-							result /= numberList.get(j);
-							break;
-					}
-				} else {
-					switch (operator) {
-						case "plus":
-							result = numberList.get(i) + numberList.get(i + 1);
-							break;
-						case "minus":
-							result = numberList.get(i) - numberList.get(i + 1);
-							break;
-						case "multiply":
-							result = numberList.get(i) * numberList.get(i + 1);
-							break;
-						case "divide":
-							result = numberList.get(i) / numberList.get(i + 1);
-							break;
-					}
-				}
-			}
-			System.out.print("Your suggested expression's result is .... ");
-			System.out.println(result);
-		} else {
+		if (numberList.size() - operatorList.size() != 0) {
 			System.out.println("The suggested expression is wrong.");
 			System.out.print("Your expression is .... ");
 			System.out.println(expression);
+			return;
 		}
+		
+		int result = 0;
+		for (int i = 0; i < operatorList.size(); i++) {
+			if (result == 0) {
+				result = numberList.get(i);
+			} else {
+				String operator = operatorList.get(i);
+				if ("plus".equals(operator)) {
+					result += numberList.get(i);
+				} else if ("minus".equals(operator)) {
+					result -= numberList.get(i);
+				} else if ("multiply".equals(operator)) {
+					result *= numberList.get(i);
+				} else if ("divide".equals(operator)) {
+					result /= numberList.get(i);
+				}
+			}
+		}
+		System.out.print("Your suggested expression's result is .... ");
+		System.out.println(result);
 		
 		scanner.close();
 	}
