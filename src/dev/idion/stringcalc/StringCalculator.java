@@ -33,21 +33,39 @@ public class StringCalculator {
 		
 		if (numberList.size() - operatorList.size() == 1) {
 			int result = 0;
-			for (int i = 0; i < numberList.size(); i += 2) {
+			for (int i = 0; i < operatorList.size(); i++) {
 				String operator = operatorList.get(i);
-				switch (operator) {
-					case "+":
-						result = result + (numberList.get(i) + numberList.get(i + 1));
-						break;
-					case "-":
-						result = result + (numberList.get(i) - numberList.get(i + 1));
-						break;
-					case "*":
-						result = result + (numberList.get(i) * numberList.get(i + 1));
-						break;
-					case "/":
-						result = result + (numberList.get(i) / numberList.get(i + 1));
-						break;
+				if (result != 0) {
+					int j = i + 1;
+					switch (operator) {
+						case "plus":
+							result += numberList.get(j);
+							break;
+						case "minus":
+							result -= numberList.get(j);
+							break;
+						case "multiply":
+							result *= numberList.get(j);
+							break;
+						case "divide":
+							result /= numberList.get(j);
+							break;
+					}
+				} else {
+					switch (operator) {
+						case "plus":
+							result = numberList.get(i) + numberList.get(i + 1);
+							break;
+						case "minus":
+							result = numberList.get(i) - numberList.get(i + 1);
+							break;
+						case "multiply":
+							result = numberList.get(i) * numberList.get(i + 1);
+							break;
+						case "divide":
+							result = numberList.get(i) / numberList.get(i + 1);
+							break;
+					}
 				}
 			}
 			System.out.print("Your suggested expression's result is .... ");
