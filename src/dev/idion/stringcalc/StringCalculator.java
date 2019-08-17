@@ -27,7 +27,7 @@ public class StringCalculator {
 		operatorMap.put("divide", "/");
 		
 		for (int i = 0; i < expressionArray.length; i++) {
-			if (expressionArray[i].matches("[0-9]")) {
+			if (expressionArray[i].matches("(^[0-9]*$)")) {
 				numberList.add(Integer.parseInt(expressionArray[i]));
 			} else {
 				operatorList.add(operatorMap.get(expressionArray[i]));
