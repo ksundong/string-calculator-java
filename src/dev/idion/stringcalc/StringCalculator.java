@@ -12,7 +12,9 @@ public class StringCalculator {
 		System.out.println("The expression ending is '='");
 		
 		String expression = scanner.nextLine();
-		expression = expression.substring(0, expression.indexOf("="));
+		if (expression.contains("=")) {
+			expression = expression.substring(0, expression.indexOf("="));
+		}
 		
 		String[] expressionArray = expression.split(" ");
 		
